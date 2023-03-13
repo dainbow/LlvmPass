@@ -29,6 +29,7 @@
 *.app
 
 /bin/
+*.png
 *.cmake
 /pass/CMakeFiles/
 /pass/CMakeCache.txt
