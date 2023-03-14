@@ -33,3 +33,4 @@
 *.cmake
 /pass/CMakeFiles/
 /pass/CMakeCache.txt
+.vscode
