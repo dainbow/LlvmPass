@@ -24,7 +24,7 @@ void ModifyStatic(std::ifstream& static_data, DynamicData& dynamic_data) {
       std::getline(static_data, remain);
 
       if (edges_printed == false) {
-        combined << "itself[label = \"self-call\", style = hexagon]\n";
+        combined << "itself[label = \"self-call\"]\n";
 
         for (auto& edge : dynamic_data.edges_) {
           if (edge.from_ != edge.to_) {

@@ -34,5 +34,9 @@
 /graphs/
 *.cmake
 /pass/CMakeFiles/
+/pass/spectre/CMakeFiles/
 /pass/CMakeCache.txt
+/pass/spectre/CMakeCache.txt
+/pass/Makefile
+/pass/spectre/Makefile
 .vscode

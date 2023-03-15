@@ -1,0 +1,1 @@
+add_library(Spectre MODULE spectre.cpp)       # add your pass as new library

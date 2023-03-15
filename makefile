@@ -3,8 +3,8 @@ LLC = llc
 OPT = opt
 DOT = dot
 
-PASSDIR = ~/Git/llvm-pass/pass/
-PASSNAME = libpass.so
+PASSDIR = ./pass/spectre/
+PASSNAME = libSpectre.so
 
 CXXFLAGS  = -c -O0 -emit-llvm -Wall -Wextra
 LDFLAGS = 
@@ -41,15 +41,15 @@ $(DUMPDIR)%.png: $(GRAPHDIR)%.txt
 
 $(BINDIR)%.o: $(SRCDIRS)%.cpp $(PASSDIR)$(PASSNAME)
 	@$(CC) -MMD -MF $@.d $(CXXFLAGS) $< -o $@.bc
-	@$(OPT) $(OPTFLAGS) -load $(PASSDIR)$(PASSNAME) -mypass $@.bc -o $@.bc
+	@$(OPT) $(OPTFLAGS) -load $(PASSDIR)$(PASSNAME) -spectre $@.bc -o $@.bc
 	@$(CC) $@.bc -c -o $@
  
 $(BINDIR)%.o: $(TARGETDIRS)%.cpp $(PASSDIR)$(PASSNAME)
 	@$(CC) -MMD -MF $@.d $(CXXFLAGS) $< -o $@.bc
-	@$(OPT) $(OPTFLAGS) -load $(PASSDIR)$(PASSNAME) -mypass $@.bc -o $@.bc
+	@$(OPT) $(OPTFLAGS) -load $(PASSDIR)$(PASSNAME) -spectre $@.bc -o $@.bc
 	@$(CC) $@.bc -c -o $@
 
-$(PASSDIR)$(PASSNAME): $(PASSDIR)MyPass.cpp
+$(PASSDIR)$(PASSNAME): $(PASSDIR)spectre.cpp
 	@make -C $(PASSDIR)
 
 -include $(DEPENDENCES)
@@ -59,11 +59,16 @@ $(PASSDIR)$(PASSNAME): $(PASSDIR)MyPass.cpp
 
 all: Library
 
+init:
+	cmake -S ./pass/ -B ./pass/
+	cmake -S ./pass/spectre/ -B ./pass/spectre/
+	make mkdirs
+
 dumps: $(DUMPS)
 	@echo "Dumps created"
 
 mkdirs:
-	mkdir $(BINDIR) $(SRCDIRS) $(TARGETDIRS) $(INCLUDEDIR)
+	mkdir $(BINDIR) $(GRAPHDIR) $(DUMPDIR) $(DATADIR)
 
 clean: 
 	@rm -f $(BINDIR)*

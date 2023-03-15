@@ -16,9 +16,9 @@ using namespace llvm;
 namespace {
 
 // Define your Pass as a subclass of one of the existing pass interfaces.
-struct MyPass : public FunctionPass {
+struct Spectre : public FunctionPass {
   static char ID;
-  MyPass() : FunctionPass(ID), output_(nullptr), depth_(0), is_inspected_(false) {
+  Spectre() : FunctionPass(ID), output_(nullptr), depth_(0), is_inspected_(false) {
     output_ = fopen(tmp_path, "w");
     assert(output_);
 
@@ -30,7 +30,7 @@ struct MyPass : public FunctionPass {
     fprintf(output_, "compound=true;\n");
   }
 
-  ~MyPass() {
+  ~Spectre() {
     depth_--;
     PrintNTabs();
     fprintf(output_, "}\n");
@@ -188,5 +188,5 @@ struct MyPass : public FunctionPass {
 }  // namespace
 
 // Registering your pass in the LLVM
-char MyPass::ID = 0;
-static RegisterPass<MyPass> X("mypass", "My custom pass", false, true);
+char Spectre::ID = 0;
+static RegisterPass<Spectre> X("spectre", "LLVM inSPECTRE to check static data and injection", false, true);
