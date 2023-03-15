@@ -60,9 +60,9 @@ $(PASSDIR)$(PASSNAME): $(PASSDIR)spectre.cpp
 all: Library
 
 init:
-	cmake -S ./pass/ -B ./pass/
-	cmake -S ./pass/spectre/ -B ./pass/spectre/
-	make mkdirs
+	@cmake -S ./pass/ -B ./pass/
+	@cmake -S ./pass/spectre/ -B ./pass/spectre/
+	@make mkdirs
 
 dumps: $(DUMPS)
 	@echo "Dumps created"
