@@ -1,4 +1,4 @@
-CC = clang
+CC = clang++
 LLC = llc
 OPT = opt
 DOT = dot
@@ -17,19 +17,20 @@ BINDIR = ./bin/
 INCLUDEDIR = ./include/
 GRAPHDIR = ./graphs/
 DUMPDIR = ./dumps/
+DATADIR = ./data/
 
-SOURCES = $(wildcard $(SRCDIRS)*.c)
-TARGETS = $(wildcard $(TARGETDIRS)*.c)
+SOURCES = $(wildcard $(SRCDIRS)*.cpp)
+TARGETS = $(wildcard $(TARGETDIRS)*.cpp)
 GRAPHS = $(wildcard $(GRAPHDIR)*.txt)
 
-OBJECTS = $(addprefix $(BINDIR), $(notdir $(SOURCES:.c=.o)))
-TARGETOBJECTS = $(addprefix $(BINDIR), $(notdir $(TARGETS:.c=.o)))
+OBJECTS = $(addprefix $(BINDIR), $(notdir $(SOURCES:.cpp=.o)))
+TARGETOBJECTS = $(addprefix $(BINDIR), $(notdir $(TARGETS:.cpp=.o)))
 DUMPS = $(addprefix $(DUMPDIR), $(notdir $(GRAPHS:.txt=.png)))
 
 DEPENDENCES = $(addsuffix .d,$(OBJECTS))
 TARGETDEPENDENCES = $(addsuffix .d,$(TARGETOBJECTS))
 
-TARGETSNOEXT =  $(notdir $(TARGETS:.c=))
+TARGETSNOEXT =  $(notdir $(TARGETS:.cpp=))
 DUMPSNOEXT = $(notdir $(GRAPHS:.txt=))
 
 $(TARGETSNOEXT): $(OBJECTS) $(TARGETOBJECTS)
@@ -38,12 +39,12 @@ $(TARGETSNOEXT): $(OBJECTS) $(TARGETOBJECTS)
 $(DUMPDIR)%.png: $(GRAPHDIR)%.txt
 	@$(DOT) $(DOTFLAGS) $< > $@
 
-$(BINDIR)%.o: $(SRCDIRS)%.c $(PASSDIR)$(PASSNAME)
+$(BINDIR)%.o: $(SRCDIRS)%.cpp $(PASSDIR)$(PASSNAME)
 	@$(CC) -MMD -MF $@.d $(CXXFLAGS) $< -o $@.bc
 	@$(OPT) $(OPTFLAGS) -load $(PASSDIR)$(PASSNAME) -mypass $@.bc -o $@.bc
 	@$(CC) $@.bc -c -o $@
  
-$(BINDIR)%.o: $(TARGETDIRS)%.c $(PASSDIR)$(PASSNAME)
+$(BINDIR)%.o: $(TARGETDIRS)%.cpp $(PASSDIR)$(PASSNAME)
 	@$(CC) -MMD -MF $@.d $(CXXFLAGS) $< -o $@.bc
 	@$(OPT) $(OPTFLAGS) -load $(PASSDIR)$(PASSNAME) -mypass $@.bc -o $@.bc
 	@$(CC) $@.bc -c -o $@
@@ -65,4 +66,7 @@ mkdirs:
 	mkdir $(BINDIR) $(SRCDIRS) $(TARGETDIRS) $(INCLUDEDIR)
 
 clean: 
-	rm $(OBJECTS) $(TARGETOBJECTS) $(DEPENDENCES) $(TARGETDEPENDENCES) $(PASSDIR)$(PASSNAME)
+	@rm -f $(BINDIR)*
+	@rm -f $(GRAPHDIR)*
+	@rm -f $(DUMPDIR)*
+	@rm -f $(DATADIR)*
