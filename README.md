@@ -27,18 +27,18 @@ Now you can use this project!
   1. Put .cpp file with your program into /targets/ folder. (There is already simple program which calculates fibonacci numbers)
       - Note that inspectation pass applies only on files contains INSPECTED in the name
   3. Now you should compile it. 
-    + ``` $ make *your program name without extension*```
+      - ``` $ make *your program name without extension*```
   4. Then you should execute your program to collect dynamic data.
-    + ``` $ ./*your program name without extension*.out ```
+      - ``` $ ./*your program name without extension*.out ```
   5. Both static and dynamic data are collected so we can make graphs
-    + ``` $ make dumps ```
+      - ``` $ make dumps ```
   6. Finally, you should combine static and dynamic data. It can be done with [combiner program](https://github.com/dainbow/LlvmPass/blob/master/targets/combiner.cpp)
-    + ``` $ make combiner ```
-    + ``` $ ./combiner.out ```
+      - ``` $ make combiner ```
+      - ``` $ ./combiner.out ```
   7. You can see three images in /dumps/ folder
-    + ``` static.png ``` shows listing of LLVM instructions, these instructions placed into its function's subgraphs
-    + ``` dynamic.png ``` shows dependences between functions during execution. You can see callers and callees, attrubites to call function and what it returned. Also, the most frequent functions' become angrier
-    + ``` combined.png ``` shows combination of last two graphs
+      - ``` static.png ``` shows listing of LLVM instructions, these instructions placed into its function's subgraphs
+      - ``` dynamic.png ``` shows dependences between functions during execution. You can see callers and callees, attrubites to call function and what it returned. Also, the most frequent functions' become angrier
+      - ``` combined.png ``` shows combination of last two graphs
 
 # Notes
   + This simple program assumes that your function has only one ``` uint64_t ``` argument and return this type also.
