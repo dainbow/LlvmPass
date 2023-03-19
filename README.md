@@ -20,7 +20,7 @@ Then, combine static and dynamic data to make ultimate graph which will give us 
 ## Process of install
   + ``` $ git clone https://github.com/dainbow/LlvmPass.git ```
   + ``` $ cd LlvmPass ```
-  + ``` $ make init $
+  + ``` $ make init $ ```
 Now you can use this project!
 
 # Usage
