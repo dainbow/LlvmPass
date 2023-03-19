@@ -44,3 +44,11 @@ Now you can use this project!
 # Notes
   + This simple program assumes that your function has only one ``` uint64_t ``` argument and return this type also.
   + If you see strange name of your functions in graph, just put ``` extern "C" ``` just before function's declaration.
+
+# Graph examples
+
+![static graph](https://user-images.githubusercontent.com/26509840/226178025-d5f8c44e-1c84-423c-b88b-60a4f8e5b1c8.png)
+![dynamic graph](https://user-images.githubusercontent.com/26509840/226178044-532d6df0-5201-491d-ba13-d85108530520.png)
+![combined graph](https://user-images.githubusercontent.com/26509840/226178054-9e7d59ba-ac7c-4523-be12-7f054b3ea2a5.png)
+
+
