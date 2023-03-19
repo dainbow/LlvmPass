@@ -47,8 +47,7 @@ Now you can use this project!
 
 # Graph examples
 
-![static graph](https://user-images.githubusercontent.com/26509840/226178025-d5f8c44e-1c84-423c-b88b-60a4f8e5b1c8.png)
-![dynamic graph](https://user-images.githubusercontent.com/26509840/226178044-532d6df0-5201-491d-ba13-d85108530520.png)
-![combined graph](https://user-images.githubusercontent.com/26509840/226178054-9e7d59ba-ac7c-4523-be12-7f054b3ea2a5.png)
-
++ [static graph example](https://github.com/dainbow/LlvmPass/blob/master/examples/static.png)
++ [dynamic graph example](https://github.com/dainbow/LlvmPass/blob/master/examples/dynamic.png)
++ [combined graph example](https://github.com/dainbow/LlvmPass/blob/master/examples/combined.png)
 
